@@ -1,0 +1,124 @@
+<div class="section_header_container">
+    <div class="section_header">
+        <h2><i class="fa fa-building-o"></i> Business Information</h2>
+        <p ng-show="building.edit_form_showing">If Building is divided into separate businesses or use types, please list each below. Leasable but vacant units should be listed as "Vacant". The combined area of the units should equal the estimated square feet stated above.
+    </div>
+</div>
+<div class="section_content_container">
+    <div class="section_content" ng-repeat="b in building.businesses">
+        <div class="table_list_container">
+            <table class="table table-striped table_highlight_first with_width_constraint"  ng-form="business_form" ng-hide="b.id == null && !building.edit_form_showing && business_form.$pristine">
+                <tbody>
+                    <tr ng-if="building.edit_form_showing || b.unit_number.length > 0">
+                        <td>Unit # (if applicable)</td>
+                        <td>
+                            <span ng-show="!building.edit_form_showing">{$ b.unit_number $}</span>
+                            <input class="form-control input-sm" type="text" name="unit_number" ng-show="building.edit_form_showing" ng-model="b.unit_number"/>
+                        </td>
+                    </tr>
+                    <tr ng-if="building.edit_form_showing || b.name.length > 0">
+                        <td>Business Name</td>
+                        <td>
+                            <span ng-show="!building.edit_form_showing">{$ b.name $}</span>
+                            <input class="form-control input-sm" type="text" name="unit_business_name" ng-show="building.edit_form_showing" ng-model="b.name" />
+                        </td>
+                    </tr>
+                    <tr ng-if="building.edit_form_showing || b.contact.name.length > 0">
+                        <td>Business Owner Name</td>
+                        <td>
+                            <span ng-show="!building.edit_form_showing">{$ b.contact.name $}</span>
+                            <input class="form-control input-sm" type="text" name="unit_business_owner_name" ng-show="building.edit_form_showing" ng-model="b.contact.name" />
+                        </td>
+                    </tr>
+                    <tr ng-if="building.edit_form_showing || b.contact.email_address.length > 0">
+                        <td>Business Owner Email</td>
+                        <td ng-class="{'has-error': business_form.unit_business_owner_email.$invalid && !business_form.unit_business_owner_email.$pristine }">
+                            <span ng-show="!building.edit_form_showing">{$ b.contact.email_address $}</span>
+                            <input class="form-control input-sm" type="email" name="unit_business_owner_email" ng-show="building.edit_form_showing" ng-model="b.contact.email_address"/>
+                            <div class="form_error" ng-show="business_form.unit_business_owner_email.$invalid && !business_form.unit_business_owner_email.$pristine">
+                                <p class="help-block"><i class="fa fa-exclamation-triangle"></i> Error, not a valid number!</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-if="building.edit_form_showing || b.description.length > 0">
+                        <td>What kind of business is this? (please describe)</td>
+                        <td>
+                            <span ng-show="!building.edit_form_showing">{$ b.description $}</span>
+                            <input class="form-control input-sm" type="text" name="unit_business_description" ng-show="building.edit_form_showing" ng-model="b.description"/>
+                        </td>
+                    </tr>
+                    <tr ng-if="building.edit_form_showing || b.gross_floor_area > 0">
+                        <td>Estimated Square Footage of the business</td>
+                        <td ng-class="{'has-error': business_form.unit_business_square_footage.$invalid && !business_form.unit_business_square_footage.$pristine }">
+                            <span ng-show="!building.edit_form_showing">{$ b.gross_floor_area $}</span>
+                            <input class="form-control input-sm" type="number" name="unit_business_square_footage" ng-show="building.edit_form_showing" ng-model="b.gross_floor_area"/>
+                            <div class="form_error" ng-show="business_form.unit_business_square_footage.$invalid && !business_form.unit_business_square_footage.$pristine">
+                                <p class="help-block"><i class="fa fa-exclamation-triangle"></i> Error, not a valid number!</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-show="building.edit_form_showing">
+                        <td colspan="2" style="font-weight: normal;"><i>Complete the rows below if different from main building attributes above.</i></td>
+                    </tr>
+                    <tr ng-if="building.edit_form_showing || b.address.length > 0">
+                        <td>Business Address</td>
+                        <td>
+                            <span ng-show="!building.edit_form_showing">{$ b.address $}</span>
+                            <input class="form-control input-sm" type="text" name="unit_business_address" ng-show="building.edit_form_showing" ng-model="b.address"/>
+                        </td>
+                    </tr>
+                    <tr ng-if="building.edit_form_showing || b.electric_provider.length > 0">
+                        <td>Electric Provider (Name of Utility)</td>
+                        <td>
+                            <span ng-show="!building.edit_form_showing">{$ b.electric_provider $}</span>
+                            <input class="form-control input-sm" type="text" name="electric_provider" ng-show="building.edit_form_showing" ng-model="b.electric_provider"/>
+                        </td>
+                    </tr>
+                    <tr ng-if="building.edit_form_showing || b.electric_provider_account_number.length > 0">
+                        <td>Electric Provider Account Number</td>
+                        <td>
+                            <span ng-show="!building.edit_form_showing">{$ b.electric_provider_account_number $}</span>
+                            <input class="form-control input-sm" type="text" name="electric_provider_account_number" ng-show="building.edit_form_showing" ng-model="b.electric_provider_account_number"/>
+                        </td>
+                    </tr>
+                    <tr ng-if="building.edit_form_showing || b.natural_gas_provider.length > 0">
+                        <td>Natural Gas Provider (Name of Utility)</td>
+                        <td>
+                            <span ng-show="!building.edit_form_showing">{$ b.natural_gas_provider $}</span>
+                            <input class="form-control input-sm" type="text" name="natural_gas_provider" ng-show="building.edit_form_showing" ng-model="b.natural_gas_provider"/>
+                        </td>
+                    </tr>
+                    <tr ng-if="building.edit_form_showing || b.natural_gas_provider_account_number.length > 0">
+                        <td>Natural Gas Account Number</td>
+                        <td>
+                            <span ng-show="!building.edit_form_showing">{$ b.natural_gas_provider_account_number $}</span>
+                            <input class="form-control input-sm" type="text" name="natural_gas_provider_account_number" ng-show="building.edit_form_showing" ng-model="b.natural_gas_provider_account_number"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Occupancy (%)</td>
+                        <td ng-class="{'has-error': business_form.occupancy.$invalid && !business_form.occupancy.$pristine }">
+                            <span ng-show="!building.edit_form_showing">{$ b.occupancy | number:0 $}</span>
+                            <div class="input-group" ng-show="building.edit_form_showing">
+                                <input class="form-control input-sm" type="number" name="occupancy" style="text-align: right;" ng-disabled="!building.edit_form_showing" ng-model="b.occupancy" min="0" max="100"  />
+                                <span class="input-group-addon">%</span>
+                            </div>
+                            <div class="form_error" ng-show="business_form.occupancy.$error.number && !business_form.occupancy.$pristine">
+                                <p  class="help-block"><i class="fa fa-exclamation-triangle"></i> Error, not a valid number!</p>
+                            </div>
+                            <div class="form_error" ng-show="(business_form.occupancy.$error.min || business_form.occupancy.$error.max) && !business_form.occupancy.$pristine">
+                                <p class="help-block"><i class="fa fa-exclamation-triangle"></i> Error, occupancy should be between 0 and 100!</p>
+                            </div>
+                        </td>
+                    </tr>
+               </tbody>
+            </table>
+        </div>
+        <div class="table_footer" ng-show="building.edit_form_showing">
+            <div class="col-sm-5">
+                <button class="btn btn-primary btn-sm" type="button" ng-click="add_business()" ng-show="$last">Add a Business</button>
+                <button class="btn btn-primary btn-sm" type="button" ng-click="add_meter(b)" ng-disabled="!(b.name.length > 0)">Associate a Meter to Business</button>
+            </div>
+        </div>
+    </div>
+</div>

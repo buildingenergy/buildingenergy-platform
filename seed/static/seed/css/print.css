@@ -1,0 +1,14 @@
+.sidebar,
+.search_bar_container,
+.menu_toggle_container,
+.add_menu_container,
+.page_action_container,
+.footer {
+	display: none;
+}
+.display .content {
+	margin-left: 0;
+}
+.page .page_header_container .page_header .page_title {
+	width: 100%;
+}

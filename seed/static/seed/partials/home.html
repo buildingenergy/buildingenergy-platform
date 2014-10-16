@@ -1,0 +1,71 @@
+<div class="section">
+    <div class="section_content_container">
+        <div class="section_content">
+        	<div class="home_jump_nav_container">
+        		<div class="home_jump_nav">
+        			<a href="#/projects"><i class="fa fa-folder"></i>Projects</a>
+        			<a href="#/buildings"><i class="fa fa-building"></i>Buildings</a>
+        			<a href="#/data" ng-show="menu.user.organization.user_role !== 'viewer'"><i class="fa fa-sitemap"></i>Data</a>
+        			<a href="#/accounts"><i class="fa fa-users"></i>Organizations</a>
+        			<a href="#/feedback"><i class="fa fa-bullhorn"></i>Feedback</a>
+        		</div>
+        	</div>
+            <div class="jumbotron">
+            	<div class="home_hero_content_container">
+	                <h1>Welcome to Building Energy</h1>
+	                <p>Building Energy provides a standardized format for collecting, storing and analyzing building energy performance information about large portfolios. Upload your buildings to get started.</p>
+	                <p><a href="javascript:void(0);" data-toggle="modal" data-target="#dataUploadModal" ng-click="open_data_upload_modal()" class="btn btn-primary btn-lg" role="button" ng-hide="menu.user.organization.user_role === 'viewer'"><i class="fa fa-cloud-upload"></i>&nbsp;&nbsp;Upload your buildings</a> <a ng-href="{$ urls.static_url $}seed/pdf/Building_Energy_User_Guide.pdf" target="_blank" title="Building Energy User Guide" class="btn btn-warning btn-lg" role="button"><i class="fa fa-file-text"></i>&nbsp;&nbsp;Getting Started Guide</a></p>
+  	        </div>
+            </div>
+            <div class="whats_new_container">
+	            <div class="whats_new">
+	            	<h2>Building Energy includes:</h2>
+
+		            <div class="row">
+		            	<div class="content_col col-md-4">
+		            		<div class="content_col_header">
+		            			<div class="content_col_header_left">
+		            				<span><i class="fa fa-cloud-upload"></i></span>
+		            			</div>
+		            			<div class="content_col_header_right">
+			            			<h3>Upload your data</h3>
+		            			</div>
+		            		</div>
+		            		<div class="copy">
+		            			<p>Get started using Building Energy by importing multiple .CSV, .XLS, Green Button files and map them to the emerging BEDES standard.</p>
+		            			<p><a ng-href="{$ urls.static_url $}seed/sample-data/seed-sample-data.zip" class="btn btn-info" role="button"><i class="fa fa-cloud-download"></i>&nbsp;&nbsp;Download Sample Data</a></p>
+		            		</div>
+		            	</div>
+		            	<div class="content_col col-md-4">
+		            		<div class="content_col_header">
+		            			<div class="content_col_header_left">
+		            				<span><i class="fa fa-exchange"></i></span>
+		            			</div>
+		            			<div class="content_col_header_right">
+			            			<h3>Match your data</h3>
+		            			</div>
+		            		</div>
+		            		<div class="copy">
+		            			<p>Match-up building data from different data files. Manage many-to-many relationships (e.g. multiple IDs, tax lots, etc). Load and store custom data fields.</p>
+
+		            		</div>
+		            	</div>
+		            	<div class="content_col col-md-4">
+		            		<div class="content_col_header">
+		            			<div class="content_col_header_left">
+		            				<span><i class="fa fa-check-square"></i></span>
+		            			</div>
+		            			<div class="content_col_header_right">
+			            			<h3>Manage your data</h3>
+		            			</div>
+		            		</div>
+		            		<div class="copy">
+		            			<p>Use Building Energy's flexible, easy-to-use labeling system and project groupings to manage your workflow and share important data within your organization.</p>
+		            		</div>
+		            	</div>
+		            </div>
+	            </div>
+            </div>
+        </div>
+    </div>
+</div>

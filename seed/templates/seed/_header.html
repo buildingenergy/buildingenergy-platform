@@ -1,0 +1,54 @@
+
+    <div class="header">
+	    <div class="menu_toggle_container">
+	        <a class="menu_toggle" ng-click="toggle_menu()">
+				<i class="fa fa-bars"></i>
+	        </a>
+	    </div>
+	    <div class="logo_container">
+	        <div class="logo">
+	        	{% if is_america_saves_user %}
+	            <a class="custom-horizontal" href="http://www.americasavesenergy.org/" target="new"><img src="{{STATIC_URL}}seed/images/logo-america-saves.png" alt="logo-america-saves" width="200" height="40" /></a>
+	        	{% else %}
+	        	<a class="be-horizontal" href="/"><img src="{{STATIC_URL}}seed/images/logo_BE.png" alt="Building Energy Inc" title="Building Energy Inc" width="200" height="29" /></a>
+	        	{% endif %}
+	        </div>
+	    </div>
+	    <div class="search_bar_container">
+	        <div class="search_bar">
+	            <div class="input-group">
+      			<input class="form-control" type="Search" placeholder="Search" ng-model="search_input" be-Enter="input_search()">
+			      <span class="input-group-btn">
+			        <button class="btn btn-primary" type="button" ng-click="input_search()"><i class="fa fa-search"></i></button>
+			      </span>
+			    </div>
+	        </div>
+	    </div>
+	    <div class="menu_action_container">
+			<div class="btn-group org-dropdown" dropdown is-open="status.isopen">
+		      <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+		        {$ menu.user.organization.name $} <span class="caret"></span>
+		      </button>
+		      <ul class="dropdown-menu" role="menu">
+		        <li ng-repeat="org in menu.user.organizations">
+		        	<a href ng-click="set_user_org(org)">{$ org.name $} <i class="fa fa-check" ng-show="org.id == menu.user.organization.id"></i></a>
+		        </li>
+		      </ul>
+		    </div>
+			<div class="btn-group" ng-hide="menu.user.organization.user_role === 'viewer'">
+				<button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+			    	<i class="fa fa-plus"></i>
+			    	<span class="sr-only">Toggle Dropdown</span>
+			    </button>
+			    <ul class="dropdown-menu pull-right" role="menu">
+			    	<li class="dropdown_header">Create a New...</li>
+			    	<li class="divider"></li>
+			    	<li><a href="javascript:void(0);" data-toggle="modal" data-target="#newBuildingModalIndex" ng-click="open_new_building_modal()" ng-show="menu.user.organization.user_role !== 'viewer'">Building</a></li>
+			    	<li class="divider"></li>
+			    	<li><a href="javascript:void(0);" data-toggle="modal" data-target="#newProjectModalIndex" ng-click="open_create_project_modal()" ng-show="menu.user.organization.user_role !== 'viewer'">Project</a></li>
+			    	<li class="divider" ng-show="menu.user.organization.user_role !== 'viewer'"></li>
+			    	<li ng-show="menu.user.organization.user_role !== 'viewer'"><a href="javascript:void(0);" data-toggle="modal" data-target="#dataUploadModal" ng-click="open_data_upload_modal()">Data Set</a></li>
+			    </ul>
+			</div>
+	    </div>
+	</div>

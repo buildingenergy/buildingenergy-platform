@@ -1,0 +1,23 @@
+<div class="section_header_container">
+    <div class="section_header">
+        <h2><i class="fa fa-comment"></i> Comments</h2>
+        <p ng-show="building.edit_form_showing">List any additional information, including energy intensive equipment i.e. 'bagel oven runs 60 hrs./wk')</p>
+    </div>
+</div>
+<div class="section_content_container">
+    <div class="section_content">
+        <div class="table_list_container">
+            <table class="table has_no_btm_margin table-striped table_highlight_first with_width_constraint">
+                <tbody>
+                    <tr ng-hide="!building.edit_form_showing && !building.survey.comment">
+                        <td>Comment</td>
+                        <td>
+                            <span style="white-space: normal;" ng-show="!building.edit_form_showing">{$ building.survey.comment $}</span>
+                            <textarea class="form-control" rows="5" placeholder="Enter comments..." ng-show="building.edit_form_showing" ng-model="building.survey.comment"></textarea>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

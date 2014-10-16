@@ -1,0 +1,21 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" ng-click="cancel()" aria-hidden="true"><i class="fa fa-times"></i></button>
+    <h4 class="modal-title" id="newBuildingModalLabel">Create a New Building</h4>
+</div>
+<form name="building_form" class="form-horizontal" role="form" ng-submit="submit_form(new_member_form.$valid)" novalidate>
+    <div class="modal-body form-horizontal" style="padding-bottom: 0;">
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="projectName">Building Name</label>
+            <div class="col-sm-8" ng-class="{'has-error': building_form.$invalid && !building_form.$pristine}">
+                <input type="text" class="form-control" id="building_name" ng-model="building.property_name" placeholder="Building Name" required>
+                <div class="form_error" ng-show="building_form.$invalid  && !building_form.$pristine">
+                    <p class="help-block"><i class="fa fa-exclamation-triangle"></i> Building Name is required</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+        <button type="submit" class="btn btn-primary" ng-disabled="building_form.$invalid">Create Building</button>
+    </div>
+</form>

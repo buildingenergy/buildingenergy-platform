@@ -1,0 +1,129 @@
+<div class="section_header_container">
+    <div class="section_header">
+        <h2><i class="fa fa-building-o"></i> Building Information</h2>
+    </div>
+</div>
+<div class="section_content_container">
+    <div class="section_content">
+        <div class="table_list_container">
+            <table class="table table-striped table_highlight_first with_width_constraint">
+                <tbody>
+                    <tr ng-if="building.edit_form_showing || building.property_name.length > 0">
+                        <td>Building Name</td>
+                        <td>
+                            <span ng-show="!building.edit_form_showing">{$ building.property_name $}</span>
+                            <input class="form-control input-sm" type="text" name="building_name" ng-show="building.edit_form_showing" ng-model="building.property_name"/>
+                        </td>
+                    </tr>
+                    <tr ng-if="building.edit_form_showing || building.tax_lot_id.length > 0">
+                        <td>Parcel ID (Property Identification Number)</td>
+                        <td>
+                            <span ng-show="!building.edit_form_showing">{$ building.tax_lot_id $}</span>
+                            <input class="form-control input-sm" type="text" name="parcel_id" ng-show="building.edit_form_showing" ng-model="building.tax_lot_id"/>
+                        </td>
+                    </tr>
+                    <tr ng-if="building.edit_form_showing || building.address_line_1.length > 0">
+                        <td>Building Address</td>
+                        <td>
+                            <span ng-show="!building.edit_form_showing">{$ building.address_line_1 $}</span>
+                            <input class="form-control input-sm" type="text" name="address" ng-show="building.edit_form_showing" ng-model="building.address_line_1"/>
+                        </td>
+                    </tr>
+                    <tr ng-if="building.edit_form_showing || building.postal_code.length > 0">
+                        <td>Building Zipcode</td>
+                        <td>
+                            <span ng-show="!building.edit_form_showing">{$ building.postal_code $}</span>
+                            <input class="form-control input-sm" type="text" name="building_zipcode" ng-show="building.edit_form_showing" ng-model="building.postal_code"/>
+                        </td>
+                    </tr>
+                    <tr ng-if="building.edit_form_showing || building.building_gross_floor_area">
+                        <td>Building Gross Floor Area</td>
+                        <td ng-class="{'has-error': building_form.building_gross_floor_area.$invalid && !building_form.building_gross_floor_area.$pristine }">
+                            <span ng-show="!building.edit_form_showing">{$ building.gross_floor_area $}</span>
+                            <input class="form-control input-sm" type="number" name="building_gross_floor_area" ng-show="building.edit_form_showing" ng-model="building.gross_floor_area"/>
+                            <div class="form_error" ng-show="building_form.building_gross_floor_area.$invalid && !building_form.building_gross_floor_area.$pristine">
+                                <p class="help-block"><i class="fa fa-exclamation-triangle"></i> Error, not a valid number!</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-if="building.edit_form_showing || building.owner.length > 0">
+                        <td>Building Owner Name</td>
+                        <td>
+                            <span ng-show="!building.edit_form_showing">{$ building.owner $}</span>
+                            <input class="form-control input-sm" type="text" name="building_owner_name" ng-show="building.edit_form_showing" ng-model="building.owner"/>
+                        </td>
+                    </tr>
+                    <tr ng-if="building.edit_form_showing || building.owner_email.length > 0">
+                        <td>Building Owner Email</td>
+                        <td ng-class="{'has-error': building_form.building_owner_email.$invalid && !building_form.building_owner_email.$pristine }">
+                            <span ng-show="!building.edit_form_showing">{$ building.owner_email$}</span>
+                            <input class="form-control input-sm" type="email" name="building_owner_email" ng-show="building.edit_form_showing" ng-model="building.owner_email"/>
+                            <div class="form_error" ng-show="building_form.building_owner_email.$invalid && !building_form.building_owner_email.$pristine">
+                                <p class="help-block"><i class="fa fa-exclamation-triangle"></i> Error, not a valid email address!</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-if="building.edit_form_showing || building.electric_provider.length > 0">
+                        <td>Electric Provider (Name of Utility)</td>
+                        <td>
+                            <span ng-show="!building.edit_form_showing">{$ building.electric_provider $}</span>
+                            <input class="form-control input-sm" type="text" name="electric_provider" ng-show="building.edit_form_showing" ng-model="building.electric_provider"/>
+                        </td>
+                    </tr>
+                    <tr ng-if="building.edit_form_showing || building.electric_provider_account_number.length > 0">
+                        <td>Electric Provider Account Number</td>
+                        <td>
+                            <span ng-show="!building.edit_form_showing">{$ building.electric_provider_account_number $}</span>
+                            <input class="form-control input-sm" type="text" name="electric_provider_account_number" ng-show="building.edit_form_showing" ng-model="building.electric_provider_account_number"/>
+                        </td>
+                    </tr>
+                    <tr ng-if="building.edit_form_showing || building.natural_gas_provider.length > 0">
+                        <td>Natural Gas Provider (Name of Utility)</td>
+                        <td>
+                            <span ng-show="!building.edit_form_showing">{$ building.natural_gas_provider $}</span>
+                            <input class="form-control input-sm" type="text" name="natural_gas_provider" ng-show="building.edit_form_showing" ng-model="building.natural_gas_provider"/>
+                        </td>
+                    </tr>
+                    <tr ng-if="building.edit_form_showing || building.natural_gas_provider_account_number.length > 0">
+                        <td>Natural Gas Account Number</td>
+                        <td>
+                            <span ng-show="!building.edit_form_showing">{$ building.natural_gas_provider_account_number $}</span>
+                            <input class="form-control input-sm" type="text" name="natural_gas_provider_account_number" ng-show="building.edit_form_showing" ng-model="building.natural_gas_provider_account_number"/>
+                        </td>
+                    </tr>
+                    <!-- survey -->
+                    <tr ng-repeat="question in building.survey.questions" ng-if="building.edit_form_showing || show_survey_row(question)">
+                        <td>{$ question.question $}</td>
+                        <!-- display -->
+                        <td ng-if="(question.question_type == 'Text' || question.question_type == 'Radio') && !building.edit_form_showing">{$ building.survey.question_responses[question.id].answer $}</td>
+                        <td ng-if="question.question_type == 'Enumerated' && !building.edit_form_showing">
+                            <div ng-repeat="(key, value) in building.survey.question_responses[question.id]" ng-if="value">
+                                {$ key $}
+                            </div>
+                        </td>
+                        <!-- input -->
+                        <td ng-if="question.question_type == 'Text' && building.edit_form_showing">
+                            <input class="form-control input-sm" type="text" ng-model="building.survey.question_responses[question.id].answer"/>
+                        </td>
+                        <td ng-if="question.question_type == 'Radio' && building.edit_form_showing">
+                            <label class="radio-inline">
+                              <input type="radio" value="Yes" ng-model="building.survey.question_responses[question.id].answer"> Yes 
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" value="No" ng-model="building.survey.question_responses[question.id].answer"> No
+                            </label>
+                        </td>
+                        <td ng-if="question.question_type == 'Enumerated' && building.edit_form_showing">
+                            <div class="checkbox" ng-repeat="option in question.options">
+                              <label>
+                                <input type="checkbox" ng-model="building.survey.question_responses[question.id][option.option]">
+                                {$ option.option $}
+                              </label>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

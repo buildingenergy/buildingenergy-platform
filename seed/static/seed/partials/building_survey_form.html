@@ -1,0 +1,32 @@
+<div class="page_header_container">
+    <div class="page_header">
+        <div class="left page_action_container">
+            <a href="#/buildings" class="page_action" ng-show="!is_project()"><i class="fa fa-chevron-left"></i> Buildings</a>
+            <a href="#/projects/{$ user.project_slug $}" class="page_action" ng-show="is_project()"><i class="fa fa-chevron-left"></i> Project: {$ project.name $}</a>
+        </div>
+        <div class="page_title">
+            <h1>{$ building.address_line_1 $}</h1>
+        </div>
+        <div class="right page_action_container" ng-hide="building.edit_form_showing">
+            <a href="javascript:void(0);" ng-click="building.edit_form_showing = true; save_building_state()" ng-show="user_role !== 'viewer'"><i class="fa fa-pencil"></i> Edit</a>
+        </div>
+        <div class="right page_action_container page_action_btn" ng-show="building.edit_form_showing">
+            <a roll="button" class="btn btn-default btn-sm" href="javascript:void(0);" ng-click="building.edit_form_showing = false; restore_building()" >Cancel</a>
+            <a roll="button" class="btn btn-primary btn-sm" href="javascript:void(0);" ng-click="building.edit_form_showing = false; save_building()" ng-disabled="building_form.$invalid">Save</a>
+        </div>
+    </div>
+</div>
+<form name="building_form">
+	<!-- building details -->
+	<div class="section" ng-include="urls.static_url + 'seed/partials/building_survey_form/building.html'"></div>
+	<!-- business section -->
+	<div class="section" ng-include="urls.static_url + 'seed/partials/building_survey_form/business.html'"></div>
+	<!-- utility section -->
+	<div class="section" ng-include="urls.static_url + 'seed/partials/building_survey_form/utility.html'"></div>
+	<!-- comments section -->
+	<div class="section" ng-include="urls.static_url + 'seed/partials/building_survey_form/comments.html'"></div>
+	<!-- verification section -->
+	<div class="section" ng-include="urls.static_url + 'seed/partials/building_survey_form/verified.html'"></div>
+	<!-- extra data -->
+	<div class="section" ng-include="urls.static_url + 'seed/partials/building_survey_form/extra_data.html'"></div>
+</form>

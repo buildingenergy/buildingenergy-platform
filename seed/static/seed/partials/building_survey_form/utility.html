@@ -1,0 +1,88 @@
+<div class="section_header_container">
+    <div class="section_header">
+        <h2><i class="fa fa-tachometer"></i> Utility History</h2>
+        <p ng-show="building.edit_form_showing">Please submit 12-18 months of complete energy use data (electric + natural gas).</p>
+   </div>
+</div>
+<div class="section_content_container" ng-repeat="business in building.businesses">
+    <div class="section_content" ng-repeat="m in business.meters" ng-form="meter_form" ng-hide="m.id == null && !building.edit_form_showing && meter_form.$pristine">
+        <div class="table_list_container">
+            <table class="table has_no_btm_margin table-striped table_highlight_first with_width_constraint">
+                <tbody>
+                    <tr>
+                        <td>Business Unit and Name</td>
+                        <td>{$ business.unit_number $} - {$ business.name $}</td>
+                    </tr>
+                    <tr>
+                        <td>Type of Meter</td>
+                        <td>
+                            <span ng-show="!building.edit_form_showing">{$ m.energy_type|titleCase $}</span>
+                            <div class="form-group" ng-show="building.edit_form_showing">
+                                <label class="radio-inline">
+                                  <input type="radio" value="Electricity" ng-model="m.energy_type"> Electricity
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio" value="Natural Gas" ng-model="m.energy_type"> Natural Gas
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Meter Number</td>
+                        <td>
+                            <span ng-show="!building.edit_form_showing">{$ m.name || '-' $}</span>
+                            <input class="form-control input-sm" type="text" name="meter_number" ng-show="building.edit_form_showing" ng-model="m.name"/>
+                        </td>
+                    </tr>
+               </tbody>
+            </table>
+        </div>
+        <div class="table_list_container">
+            <table class="table table-striped table_highlight_first with_width_constraint">
+                <thead>
+                    <th>Meter Read Date</th>
+                    <th>Total <span ng-show="m.energy_type == 'Electricity'">kWh</span><span ng-show="m.energy_type == 'Natural Gas'">Therms</span></th>
+                    <th>Total Cost ($)</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="observation in m.timeseries_data" ng-form="observation_form" ng-if="!(observation.id == null && observation.end_time == undefined && observation.reading == undefined && observation.cost == undefined && !building.edit_form_showing)">
+                        <td ng-class="{'has-error': observation_form.meter_read_date.$invalid }" ng-controller="date_controller">
+                            <span ng-show="!building.edit_form_showing" class="is_aligned_right">{$ observation.end_time | date:'MM/dd/yyyy' $}</span>
+                            <div class="input-group">	
+                            	<input type="text" datepicker-append-to-body="true" class="form-control" name="meter_read_date" datepicker-popup="MM/dd/yyyy" ng-model="observation.end_time" is-open="opened" datepicker-options="dateOptions" ng-required="observation.reading || observation.cost" close-text="Close" ng-show="building.edit_form_showing" show-weeks="false"/>
+                            
+	                            <span class="input-group-btn" ng-show="building.edit_form_showing">
+	                                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+	                            </span>
+                            </div>
+                            <div class="form_error" ng-show="observation_form.meter_read_date.$error.required">
+                                <p class="help-block"><i class="fa fa-exclamation-triangle"></i> Error, date required!</p>
+                            </div>
+                        </td>
+                        <td ng-class="{'has-error': observation_form.total_reading.$invalid && !observation_form.total_reading.$pristine }">
+                            <span ng-show="!building.edit_form_showing" class="is_aligned_right">{$ observation.reading | number $}</span>
+                            <div class="input-group" ng-show="building.edit_form_showing">
+                                <input class="form-control input-sm" type="number" name="total_reading" style="text-align: right;" ng-disabled="!building.edit_form_showing" ng-model="observation.reading"/>
+                                <span class="input-group-addon" ng-if="m.energy_type == 'Electricity'">kWh</span>
+                                <span class="input-group-addon" ng-if="m.energy_type == 'Natural Gas'">Therms</span>
+                            </div>
+                            <div class="form_error" ng-show="observation_form.total_reading.$error.number && !observation_form.total_reading.$pristine">
+                                <p class="help-block"><i class="fa fa-exclamation-triangle"></i> Error, not a valid number!</p>
+                            </div>
+                        </td>
+                        <td ng-class="{'has-error': observation_form.total_cost.$invalid && !observation_form.total_cost.$pristine }">
+                            <span ng-show="!building.edit_form_showing" class="is_aligned_right">{$ observation.cost | currency $}</span>
+                            <div class="input-group" ng-show="building.edit_form_showing">
+                                <span class="input-group-addon">$</span>
+                                <input class="form-control input-sm" type="number" name="total_cost" ng-disabled="!building.edit_form_showing" ng-model="observation.cost"/>
+                            </div>
+                            <div class="form_error" ng-show="observation_form.total_cost.$error.number && !observation_form.total_cost.$pristine">
+                                <p class="help-block"><i class="fa fa-exclamation-triangle"></i> Error, not a valid number!</p>
+                            </div>
+                        </td>
+                    </tr>
+               </tbody>
+            </table>
+        </div>
+    </div>
+</div>

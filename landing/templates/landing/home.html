@@ -1,0 +1,38 @@
+{% extends "landing/base.html" %}{% load compress %}
+
+{% block js_scripts %}{{block.super}}
+{% endblock %}
+
+{% block content %}
+
+{% include "landing/_header.html" %}
+<div class="page login">
+    <div class="page_section">
+		<div class="section_forms">	
+			{% include "landing/_browser_supported.html" %}
+			<div class="clearfix"></div>
+			<div class="form_title">
+				{% if 'logout' in request.GET %}
+				<h2>You have successfully signed out</h2> 
+				<p>You can sign in again below.</p>
+				{% else %}
+				<h2>Sign in to Building Energy</h2>
+				{% endif %}
+				{% if 'setup_complete' in request.GET %}<p>Thank you for creating your account! Please sign in below.{% endif %}
+                                    
+				<form action="{% url "landing:login" %}?next={% url "seed:home" %}" method="POST" class="signup_form">{% csrf_token %}
+				    <table class="signup_table">
+				        {{login_form.as_table}}
+				    </table>
+				    <button type="submit" class="btn btn-primary" value="Sign In"/>Sign In</button>
+				    <!-- <input type="reset" class="btn btn-default" value="Cancel"/> -->
+				    <a class="btn" href="{% url "landing:password_reset" %}">Forgot password?</a>
+				</form>
+			</div>
+		</div>
+		<!-- END .section_forms -->
+	</div>
+	<!-- END .page_section .content -->
+</div>
+<!-- END .page -->
+{% endblock %}

@@ -1,0 +1,3 @@
+[run]
+include = ./seed/*, ./contacts/*, ./surveys/*, ./green_button/*, ./public/*, ./audit_logs/*
+omit = ./seed/migrations/*, ./contacts/migrations/*, ./seed/test_helpers/*

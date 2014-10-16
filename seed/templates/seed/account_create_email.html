@@ -1,0 +1,13 @@
+{% load i18n %}{% autoescape off %}
+{% blocktrans %}Hello {{first_name}}, {% endblocktrans %}
+
+{% trans "You're receiving this e-mail because you've been registered for a Building Energy account." %}
+
+{% trans "Please go to the following page and setup your account:" %}
+{% block reset_link %}
+{{ protocol }}://{{ domain }}{{signup_url}}
+{% endblock %}
+
+{% blocktrans %}The Building Energy Team{% endblocktrans %}
+
+{% endautoescape %}
